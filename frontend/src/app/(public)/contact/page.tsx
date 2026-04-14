@@ -127,7 +127,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900">Address</h3>
-                    <p className="text-gray-600 mt-1">Una, Gujarat, India</p>
+                    <p className="text-gray-600 mt-1">Una, Himachal Pradesh, India</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -145,7 +145,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900">Email</h3>
-                    <a href="mailto:info@shivamorthocare.com" className="text-gray-600 mt-1 block hover:text-primary">info@shivamorthocare.com</a>
+                    <a href="mailto:info@shivamorthocare.com" className="text-gray-600 mt-1 block hover:text-primary">info@shivamorthocare.in</a>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">

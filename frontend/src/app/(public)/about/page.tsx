@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'About Us',
-  description: 'Learn about Shivam OrthoCare, Una - our mission, values, and commitment to providing the best orthopedic care in Gujarat.',
+  description: 'Learn about Shivam OrthoCare, Una - our mission, values, and commitment to providing the best orthopedic care in Himachal Pradesh.',
 };
 
 export default function AboutPage() {
@@ -17,7 +17,7 @@ export default function AboutPage() {
               About <span className="text-primary">Shivam OrthoCare</span>
             </h1>
             <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-              Shivam OrthoCare is a premier orthopedic clinic located in Una, Gujarat,
+              Shivam OrthoCare is a premier orthopedic clinic located in Una, Himachal Pradesh,
               dedicated to providing world-class bone and joint care to patients across the region.
             </p>
           </div>

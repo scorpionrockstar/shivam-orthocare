@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   keywords: [
     "orthopedic clinic Una",
     "bone doctor Una",
-    "joint replacement Una Gujarat",
+    "joint replacement Una, Himachal Pradesh",
     "Shivam OrthoCare",
     "fracture treatment",
     "sports injury doctor",

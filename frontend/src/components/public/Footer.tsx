@@ -18,7 +18,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Expert orthopedic care in Una, Gujarat. Providing comprehensive bone and joint
+              Expert orthopedic care in Una, Himachal Pradesh. Providing comprehensive bone and joint
               care with modern facilities and experienced specialists.
             </p>
           </div>
@@ -74,7 +74,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-gray-300">
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary-light" />
-                <span>Una, Gujarat, India</span>
+                <span>Una, Himachal Pradesh, India</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 flex-shrink-0 text-primary-light" />
