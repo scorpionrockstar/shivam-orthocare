@@ -6,7 +6,13 @@ vendor/
 .env
 .env.local
 .env.*.local
+.env.production
+.env.production.example
 !.env.example
+
+# Database credentials / certs
+backend/ca.pem
+backend/test-aiven.php
 
 # Build output
 .next/
