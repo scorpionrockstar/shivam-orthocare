@@ -27,6 +27,8 @@ export default function NewDoctorPage() {
         formData.append('photo', value[0]);
       } else if (key === 'available_days' && typeof value === 'string') {
         (value as string).split(',').filter(Boolean).forEach((d, i) => formData.append(`available_days[${i}]`, d.trim()));
+      } else if (key === 'is_active') {
+        formData.append('is_active', value ? '1' : '0');
       } else if (value !== undefined && value !== null && value !== '') {
         formData.append(key, String(value));
       }

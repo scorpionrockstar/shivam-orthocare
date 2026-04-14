@@ -31,8 +31,9 @@ export default function EditDoctorPage() {
         experience_years: doctor.experience_years,
         consultation_fee: doctor.consultation_fee,
         bio: doctor.bio || '',
-        available_time_start: doctor.available_time_start || '',
-        available_time_end: doctor.available_time_end || '',
+        // API returns HH:MM:SS; <input type="time"> and Laravel `H:i` both want HH:MM
+        available_time_start: doctor.available_time_start ? doctor.available_time_start.slice(0, 5) : '',
+        available_time_end: doctor.available_time_end ? doctor.available_time_end.slice(0, 5) : '',
         available_days: doctor.available_days?.join(',') || '',
         is_active: doctor.is_active,
       });
@@ -53,6 +54,9 @@ export default function EditDoctorPage() {
         formData.append('photo', value[0]);
       } else if (key === 'available_days' && typeof value === 'string') {
         (value as string).split(',').filter(Boolean).forEach((d, i) => formData.append(`available_days[${i}]`, d.trim()));
+      } else if (key === 'is_active') {
+        // Laravel `boolean` rule accepts "1"/"0"; checkbox would otherwise serialize as "on"/""
+        formData.append('is_active', value ? '1' : '0');
       } else if (value !== undefined && value !== null && value !== '') {
         formData.append(key, String(value));
       }
