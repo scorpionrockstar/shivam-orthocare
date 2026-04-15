@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\GalleryImage;
+use App\Services\CloudinaryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
@@ -33,11 +33,12 @@ class GalleryController extends Controller
 
         $uploaded = [];
 
+        $cloudinary = app(CloudinaryService::class);
         foreach ($request->file('images') as $image) {
-            $path = $image->store('gallery', 'public');
+            $url = $cloudinary->upload($image, 'shivam-orthocare/gallery');
             $uploaded[] = GalleryImage::create([
                 'title' => $request->title,
-                'image_path' => $path,
+                'image_path' => $url,
                 'category' => $request->category,
             ]);
         }
@@ -61,7 +62,7 @@ class GalleryController extends Controller
 
     public function destroy(GalleryImage $gallery): JsonResponse
     {
-        Storage::disk('public')->delete($gallery->image_path);
+        app(CloudinaryService::class)->deleteByUrl($gallery->image_path);
         $gallery->delete();
         return response()->json(['message' => 'Image deleted successfully']);
     }

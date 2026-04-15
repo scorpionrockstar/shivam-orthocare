@@ -14,6 +14,16 @@ const nextConfig: NextConfig = {
         hostname: '*.shivamorthocare.com',
         pathname: '/storage/**',
       },
+      {
+        protocol: 'https',
+        hostname: '*.onrender.com',
+        pathname: '/storage/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**',
+      },
     ],
     unoptimized: true,
   },

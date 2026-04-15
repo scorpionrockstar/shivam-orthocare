@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Services\CloudinaryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -38,7 +39,7 @@ class ServiceController extends Controller
         $validated['slug'] = Str::slug($validated['title']) . '-' . Str::random(5);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('services', 'public');
+            $validated['image'] = app(CloudinaryService::class)->upload($request->file('image'), 'shivam-orthocare/services');
         }
 
         $service = Service::create($validated);
@@ -64,7 +65,7 @@ class ServiceController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('services', 'public');
+            $validated['image'] = app(CloudinaryService::class)->upload($request->file('image'), 'shivam-orthocare/services');
         }
 
         $service->update($validated);

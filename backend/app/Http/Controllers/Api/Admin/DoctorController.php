@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
+use App\Services\CloudinaryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -47,7 +48,7 @@ class DoctorController extends Controller
         $validated['slug'] = Str::slug($validated['name']) . '-' . Str::random(5);
 
         if ($request->hasFile('photo')) {
-            $validated['photo'] = $request->file('photo')->store('doctors', 'public');
+            $validated['photo'] = app(CloudinaryService::class)->upload($request->file('photo'), 'shivam-orthocare/doctors');
         }
 
         $doctor = Doctor::create($validated);
@@ -78,7 +79,7 @@ class DoctorController extends Controller
         ]);
 
         if ($request->hasFile('photo')) {
-            $validated['photo'] = $request->file('photo')->store('doctors', 'public');
+            $validated['photo'] = app(CloudinaryService::class)->upload($request->file('photo'), 'shivam-orthocare/doctors');
         }
 
         $doctor->update($validated);

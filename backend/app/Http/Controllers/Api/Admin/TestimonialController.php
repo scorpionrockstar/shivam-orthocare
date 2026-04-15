@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Testimonial;
+use App\Services\CloudinaryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,7 @@ class TestimonialController extends Controller
         ]);
 
         if ($request->hasFile('patient_photo')) {
-            $validated['patient_photo'] = $request->file('patient_photo')->store('testimonials', 'public');
+            $validated['patient_photo'] = app(CloudinaryService::class)->upload($request->file('patient_photo'), 'shivam-orthocare/testimonials');
         }
 
         $testimonial = Testimonial::create($validated);
@@ -58,7 +59,7 @@ class TestimonialController extends Controller
         ]);
 
         if ($request->hasFile('patient_photo')) {
-            $validated['patient_photo'] = $request->file('patient_photo')->store('testimonials', 'public');
+            $validated['patient_photo'] = app(CloudinaryService::class)->upload($request->file('patient_photo'), 'shivam-orthocare/testimonials');
         }
 
         $testimonial->update($validated);

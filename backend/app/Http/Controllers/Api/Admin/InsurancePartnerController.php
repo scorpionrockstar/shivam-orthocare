@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\InsurancePartner;
+use App\Services\CloudinaryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class InsurancePartnerController extends Controller
         ]);
 
         if ($request->hasFile('logo')) {
-            $validated['logo'] = $request->file('logo')->store('insurance', 'public');
+            $validated['logo'] = app(CloudinaryService::class)->upload($request->file('logo'), 'shivam-orthocare/insurance');
         }
 
         $partner = InsurancePartner::create($validated);
@@ -51,7 +52,7 @@ class InsurancePartnerController extends Controller
         ]);
 
         if ($request->hasFile('logo')) {
-            $validated['logo'] = $request->file('logo')->store('insurance', 'public');
+            $validated['logo'] = app(CloudinaryService::class)->upload($request->file('logo'), 'shivam-orthocare/insurance');
         }
 
         $insurancePartner->update($validated);

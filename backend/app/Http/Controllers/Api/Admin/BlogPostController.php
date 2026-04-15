@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlogPost;
+use App\Services\CloudinaryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -47,7 +48,7 @@ class BlogPostController extends Controller
         }
 
         if ($request->hasFile('featured_image')) {
-            $validated['featured_image'] = $request->file('featured_image')->store('blog', 'public');
+            $validated['featured_image'] = app(CloudinaryService::class)->upload($request->file('featured_image'), 'shivam-orthocare/blog');
         }
 
         $post = BlogPost::create($validated);
@@ -77,7 +78,7 @@ class BlogPostController extends Controller
         }
 
         if ($request->hasFile('featured_image')) {
-            $validated['featured_image'] = $request->file('featured_image')->store('blog', 'public');
+            $validated['featured_image'] = app(CloudinaryService::class)->upload($request->file('featured_image'), 'shivam-orthocare/blog');
         }
 
         $blogPost->update($validated);
