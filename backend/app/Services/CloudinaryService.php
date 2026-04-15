@@ -12,11 +12,22 @@ class CloudinaryService
 
     public function __construct()
     {
+        $cloudName = config('services.cloudinary.cloud_name');
+        $apiKey    = config('services.cloudinary.api_key');
+        $apiSecret = config('services.cloudinary.api_secret');
+
+        if (!$cloudName || !$apiKey || !$apiSecret) {
+            throw new \RuntimeException(
+                'Cloudinary is not configured. Add CLOUDINARY_CLOUD_NAME, ' .
+                'CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET to your environment.'
+            );
+        }
+
         Configuration::instance([
             'cloud' => [
-                'cloud_name' => config('services.cloudinary.cloud_name'),
-                'api_key'    => config('services.cloudinary.api_key'),
-                'api_secret' => config('services.cloudinary.api_secret'),
+                'cloud_name' => $cloudName,
+                'api_key'    => $apiKey,
+                'api_secret' => $apiSecret,
             ],
             'url' => ['secure' => true],
         ]);
